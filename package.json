@@ -2,21 +2,31 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "lint": "eslint --ext .js,.vue src"
     },
     "license": "UNLICENSED",
     "devDependencies": {
+        "eslint": "^8.2.0",
+        "eslint-config-airbnb": "19.0.4",
+        "eslint-plugin-import": "^2.25.3",
+        "eslint-plugin-jsx-a11y": "^6.5.1",
+        "eslint-plugin-react": "^7.28.0",
+        "eslint-plugin-react-hooks": "^4.3.0",
+        "eslint-plugin-vue": "^9.14.1",
+        "prettier": "^2.8.8",
         "vite": "^4.0",
+        "vite-plugin-eslint": "^1.8.1",
         "vite-plugin-symfony": "^0.7.2"
     },
     "dependencies": {
         "@mdi/font": "7.0.96",
+        "@vitejs/plugin-vue": "^4.2.3",
         "core-js": "^3.29.0",
         "roboto-fontface": "*",
         "vue": "^3.2.0",
         "vue-router": "^4.0.0",
         "vuetify": "^3.0.0",
-        "webfontloader": "^1.0.0",
-        "@vitejs/plugin-vue": "^4.2.3"
+        "webfontloader": "^1.0.0"
     }
 }

@@ -1,32 +1,39 @@
 <template>
   <v-app>
     <v-layout>
-      <!-- <v-system-bar color="deep-purple darken-3"></v-system-bar> -->
-
       <v-app-bar
-          color="primary"
-          prominent
+        color="primary"
+        prominent
       >
-        <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-
+        <v-app-bar-nav-icon
+          variant="text"
+          @click.stop="drawer = !drawer"
+        />
         <v-toolbar-title>My files</v-toolbar-title>
+        <v-spacer />
+        <v-btn
+          variant="text"
+          icon="mdi-magnify"
+        />
 
-        <v-spacer></v-spacer>
+        <v-btn
+          variant="text"
+          icon="mdi-filter"
+        />
 
-        <v-btn variant="text" icon="mdi-magnify"></v-btn>
-
-        <v-btn variant="text" icon="mdi-filter"></v-btn>
-
-        <v-btn variant="text" icon="mdi-dots-vertical"></v-btn>
+        <v-btn
+          variant="text"
+          icon="mdi-dots-vertical"
+        />
       </v-app-bar>
 
       <v-navigation-drawer
-          v-model="drawer"
-          location="left"
+        v-model="drawer"
+        location="left"
       >
         <v-list
-            :items="items"
-        ></v-list>
+          :items="items"
+        />
       </v-navigation-drawer>
 
       <v-main style="height: 500px;">
@@ -62,9 +69,9 @@ export default {
   }),
 
   watch: {
-    group () {
-      this.drawer = false
+    group() {
+      this.drawer = false;
     },
   },
-}
+};
 </script>

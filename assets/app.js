@@ -1,26 +1,15 @@
-/**
- * main.js
- *
- * Bootstraps Vuetify and other plugins then mounts the App`
- */
-
-// Components
-import App from './App.vue'
-
-// Composables
+import 'vuetify/styles';
+import { createVuetify } from 'vuetify';
+import * as components from 'vuetify/components';
+import * as directives from 'vuetify/directives';
+import '@mdi/font/css/materialdesignicons.css';
 import { createApp } from 'vue';
+import App from './App.vue';
+import { registerPlugins } from './plugins';
 
-// Plugins
-import { registerPlugins } from './plugins'
+const app = createApp(App);
 
-const app = createApp(App)
-
-registerPlugins(app)
-
-import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
+registerPlugins(app);
 
 const defaultTheme = {
   dark: false,
@@ -47,6 +36,6 @@ const vuetify = createVuetify({
       defaultTheme,
     },
   },
-})
+});
 
-app.use(vuetify).mount('#app')
+app.use(vuetify).mount('#app');

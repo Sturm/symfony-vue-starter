@@ -1,14 +1,13 @@
 import { defineConfig } from "vite";
 import symfonyPlugin from "vite-plugin-symfony";
 import vue from '@vitejs/plugin-vue'
-
-/* if you're using React */
-// import react from '@vitejs/plugin-react';
+import eslint from 'vite-plugin-eslint';
 
 export default defineConfig({
   plugins: [
     symfonyPlugin(),
     vue(),
+    eslint(),
   ],
   build: {
     rollupOptions: {

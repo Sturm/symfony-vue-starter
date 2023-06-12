@@ -4,14 +4,20 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Environment;
 
-class MainController extends AbstractController
+class VueController
 {
-    #[Route('')]
-    public function dd() {
-        return $this->render('base.html.twig');
+    public function __construct(
+        private readonly Environment $twig,
+    ) {
+    }
+
+    #[Route('/')]
+    public function vueView(): Response
+    {
+        return new Response($this->twig->render('base.html.twig'));
     }
 }

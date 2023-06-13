@@ -7,7 +7,10 @@
         <v-card elevation="0">
           <v-card-title>Sign In</v-card-title>
           <v-card-text>
-            <v-form v-model="form.valid">
+            <v-form
+              v-model="form.valid"
+              @keyup.enter="submit"
+            >
               <v-row>
                 <v-col
                   cols="12"
@@ -30,6 +33,7 @@
                   />
                   <v-btn
                     elevation="1"
+                    :loading="form.loading"
                     @click="submit"
                   >
                     Submit
@@ -50,6 +54,7 @@ export default {
   data: () => ({
     form: {
       valid: false,
+      loading: false,
       user: {
         username: '',
         password: '',
@@ -73,9 +78,11 @@ export default {
       if (this.form.valid === false) {
         return;
       }
+      this.form.loading = true;
       const { data } = await this.axios.post('/api/login', this.form.user);
       localStorage.setItem('token', data.token);
       this.$router.push('/');
+      this.form.loading = false;
     },
   },
 };

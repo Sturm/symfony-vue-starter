@@ -13,6 +13,11 @@ export default createStore({
       state.user = user;
     },
   },
+  getters: {
+    getUser(state) {
+      return state.user;
+    },
+  },
   actions: {
     async fetchUser({ commit }) {
       const { data } = await axios.get('/api/user');

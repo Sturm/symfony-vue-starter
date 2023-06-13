@@ -20,10 +20,39 @@
       <v-navigation-drawer
         v-model="drawer"
         location="left"
+        permanent
+        absolute
+        app
       >
+        <v-list>
+          <v-list-item
+            prepend-avatar="https://cdn.vuetifyjs.com/images/john.png"
+            :title="user.email"
+            subtitle="Regular User"
+          />
+        </v-list>
+        <v-divider />
         <v-list
-          :items="items"
-        />
+          :lines="false"
+          density="compact"
+          nav
+        >
+          <v-list-item
+            v-for="(item, i) in items"
+            :key="i"
+            :value="item"
+            exact
+            color="primary"
+            link
+            :to="item.path"
+          >
+            <template #prepend>
+              <v-icon :icon="item.icon" />
+            </template>
+
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
       </v-navigation-drawer>
       <v-main style="height: 500px;">
         <router-view />
@@ -33,16 +62,29 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data: () => ({
     drawer: true,
     items: [
       {
         title: 'Dashboard',
-        value: '/',
+        path: '/',
+        icon: 'mdi-view-dashboard',
+      },
+      {
+        title: 'List',
+        path: '/list',
+        icon: 'mdi-format-list-bulleted',
       },
     ],
   }),
+  computed: {
+    ...mapGetters({
+      user: 'getUser',
+    }),
+  },
   methods: {
     logout() {
       localStorage.removeItem('token');

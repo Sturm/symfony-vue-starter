@@ -1,9 +1,11 @@
 <template>
-  <v-container>
+  <v-container
+    class="d-flex align-center login-container"
+  >
     <v-row>
       <v-col>
-        <v-card>
-          <v-card-title>Please Log In</v-card-title>
+        <v-card elevation="0">
+          <v-card-title>Sign In</v-card-title>
           <v-card-text>
             <v-form v-model="form.valid">
               <v-row>
@@ -13,6 +15,7 @@
                   <v-text-field
                     v-model="form.user.username"
                     :rules="form.emailRules"
+                    class="mb-4"
                     label="E-mail"
                     type="email"
                     required
@@ -20,22 +23,21 @@
                   />
                   <v-text-field
                     v-model="form.user.password"
+                    class="mb-4"
                     label="Password"
                     type="password"
                     required
                   />
+                  <v-btn
+                    elevation="1"
+                    @click="submit"
+                  >
+                    Submit
+                  </v-btn>
                 </v-col>
               </v-row>
             </v-form>
           </v-card-text>
-          <v-card-actions>
-            <v-btn
-              elevation="1"
-              @click="submit"
-            >
-              Submit
-            </v-btn>
-          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -78,3 +80,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.login-container {
+  height: 100vh;
+  max-width: 400px;
+}
+</style>

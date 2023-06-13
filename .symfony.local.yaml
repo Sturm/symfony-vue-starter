@@ -1,0 +1,5 @@
+workers:
+   yarn_encore_watch:
+       cmd: ['yarn', 'run', 'dev']
+   docker_compose_up:
+    cmd: ['docker-compose', 'up']

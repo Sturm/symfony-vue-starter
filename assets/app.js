@@ -4,10 +4,15 @@ import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 import '@mdi/font/css/materialdesignicons.css';
 import { createApp } from 'vue';
+import VueAxios from 'vue-axios';
+import axios from './plugins/axios';
 import App from './App.vue';
 import { registerPlugins } from './plugins';
+import store from './store/user';
 
 const app = createApp(App);
+app.use(VueAxios, axios);
+app.use(store);
 
 registerPlugins(app);
 

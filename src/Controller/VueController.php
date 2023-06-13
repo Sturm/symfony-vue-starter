@@ -25,12 +25,4 @@ class VueController
     {
         return new Response($this->twig->render('base.html.twig'));
     }
-
-    #[Route(
-        '/api/test',
-    )]
-    public function apiTest(): Response
-    {
-        return new Response('test api:)');
-    }
 }

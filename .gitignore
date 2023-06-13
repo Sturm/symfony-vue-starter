@@ -16,6 +16,7 @@
 
 ### php-storm ###
 .idea
+/yarn-error.log
 ###< php-storm ###
 
 ###> lexik/jwt-authentication-bundle ###

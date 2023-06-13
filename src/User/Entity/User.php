@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\User\Entity;
 
+use App\Serializer\SerializationGroup;
 use App\User\Repository\UserRepository;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\CustomIdGenerator;
@@ -11,6 +14,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\UuidV4;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -19,15 +23,18 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[Table(name: '`user`')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    #[Groups(SerializationGroup::BASIC)]
     #[Id]
     #[Column(type: UuidType::NAME, unique: true)]
     #[GeneratedValue(strategy: 'CUSTOM')]
     #[CustomIdGenerator(class: UuidGenerator::class)]
     private UuidV4 $uuid;
 
+    #[Groups(SerializationGroup::BASIC)]
     #[Column(length: 180, unique: true)]
     private ?string $email = null;
 
+    #[Groups(SerializationGroup::BASIC)]
     #[Column]
     private array $roles = [];
 

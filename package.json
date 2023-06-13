@@ -2,8 +2,7 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
-        "lint": "eslint --ext .js,.vue src"
+        "build": "vite build"
     },
     "license": "UNLICENSED",
     "devDependencies": {
@@ -26,8 +25,10 @@
         "core-js": "^3.29.0",
         "roboto-fontface": "*",
         "vue": "^3.2.0",
+        "vue-axios": "^3.5.2",
         "vue-router": "^4.0.0",
         "vuetify": "^3.0.0",
+        "vuex": "^4.0.2",
         "webfontloader": "^1.0.0"
     }
 }

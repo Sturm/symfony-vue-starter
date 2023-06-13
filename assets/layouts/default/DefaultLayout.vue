@@ -9,24 +9,14 @@
           variant="text"
           @click.stop="drawer = !drawer"
         />
-        <v-toolbar-title>My files</v-toolbar-title>
+        <v-toolbar-title>App</v-toolbar-title>
         <v-spacer />
         <v-btn
           variant="text"
-          icon="mdi-magnify"
-        />
-
-        <v-btn
-          variant="text"
-          icon="mdi-filter"
-        />
-
-        <v-btn
-          variant="text"
-          icon="mdi-dots-vertical"
+          icon="mdi-logout"
+          @click="logout"
         />
       </v-app-bar>
-
       <v-navigation-drawer
         v-model="drawer"
         location="left"
@@ -35,7 +25,6 @@
           :items="items"
         />
       </v-navigation-drawer>
-
       <v-main style="height: 500px;">
         <router-view />
       </v-main>
@@ -47,30 +36,17 @@
 export default {
   data: () => ({
     drawer: true,
-    group: null,
     items: [
       {
-        title: 'Foo',
-        value: 'foo',
-      },
-      {
-        title: 'Bar',
-        value: 'bar',
-      },
-      {
-        title: 'Fizz',
-        value: 'fizz',
-      },
-      {
-        title: 'Buzz',
-        value: 'buzz',
+        title: 'Dashboard',
+        value: '/',
       },
     ],
   }),
-
-  watch: {
-    group() {
-      this.drawer = false;
+  methods: {
+    logout() {
+      localStorage.removeItem('token');
+      this.$router.push('/login');
     },
   },
 };

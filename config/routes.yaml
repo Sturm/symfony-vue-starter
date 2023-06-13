@@ -6,3 +6,7 @@ controllers:
 
 api_login_check:
     path: /api/login
+
+user_controller:
+    resource: ../src/User/Controller/
+    type: annotation

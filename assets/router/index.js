@@ -16,10 +16,19 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/login',
+    children: [
+      {
+        path: '',
+        name: 'LoginView',
+        component: () => import(/* webpackChunkName: "home" */ '../views/LoginView.vue'),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
-  // history: createWebHistory(process.env.BASE_URL),
   history: createWebHistory('/'),
   routes,
 });

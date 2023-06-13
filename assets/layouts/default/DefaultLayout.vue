@@ -1,9 +1,20 @@
 <template>
   <v-app>
-    <v-layout>
+    <v-overlay
+      :model-value="overlay"
+      class="align-center justify-center"
+    >
+      <v-progress-circular
+        color="primary"
+        indeterminate
+        size="64"
+      />
+    </v-overlay>
+    <v-layout v-if="overlay === false">
       <v-app-bar
         color="primary"
         prominent
+        density="compact"
       >
         <v-app-bar-nav-icon
           variant="text"
@@ -66,6 +77,7 @@ import { mapGetters } from 'vuex';
 
 export default {
   data: () => ({
+    overlay: true,
     drawer: true,
     items: [
       {
@@ -84,6 +96,10 @@ export default {
     ...mapGetters({
       user: 'getUser',
     }),
+  },
+  async mounted() {
+    await this.$store.dispatch('fetchUser');
+    this.overlay = false;
   },
   methods: {
     logout() {

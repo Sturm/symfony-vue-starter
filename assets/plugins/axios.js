@@ -19,11 +19,20 @@ axios.interceptors.request.use((config) => {
   router.push('/login');
 
   return config;
-}, (error) => Promise.reject(error));
+}, (error) => {
+  Promise.reject(error);
+});
 
 axios.interceptors.response.use(
   (response) => response,
-  (error) => Promise.reject(error),
+  (error) => {
+    const { status } = error.response;
+    if (status === 401) {
+      router.push('/login');
+    }
+    router.push('/login');
+    return Promise.reject(error);
+  },
 );
 
 export default axios;

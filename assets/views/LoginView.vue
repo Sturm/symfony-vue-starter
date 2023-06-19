@@ -26,14 +26,25 @@
                   />
                   <v-text-field
                     v-model="form.user.password"
-                    class="mb-4"
+                    :rules="form.passwordRules"
+                    class="mb-3"
                     label="Password"
-                    type="password"
+                    :type="showPasswordType"
                     required
+                    append-inner-icon="mdi-eye"
+                    @click:append-inner="toggleShowPassword"
+                  />
+                  <v-alert
+                    v-if="form.error"
+                    class="mb-6"
+                    text="Wrong email or password"
+                    type="error"
                   />
                   <v-btn
-                    elevation="1"
                     :loading="form.loading"
+                    color="primary"
+                    class="mt-1"
+                    prepend-icon="mdi-check"
                     @click="submit"
                   >
                     Submit
@@ -53,8 +64,10 @@
 export default {
   data: () => ({
     form: {
+      error: false,
       valid: false,
       loading: false,
+      showPassword: false,
       user: {
         username: '',
         password: '',
@@ -62,27 +75,44 @@ export default {
       emailRules: [
         (value) => {
           if (value) return true;
-
           return 'E-mail is required.';
         },
         (value) => {
           if (/.+@.+\..+/.test(value)) return true;
-
           return 'E-mail must be valid.';
+        },
+      ],
+      passwordRules: [
+        (value) => {
+          if (value.length > 3) return true;
+          return 'Password must be longer than 3 characters';
         },
       ],
     },
   }),
+  computed: {
+    showPasswordType() {
+      return this.form.showPassword ? 'text' : 'password';
+    },
+  },
   methods: {
+    toggleShowPassword() {
+      this.form.showPassword = !this.form.showPassword;
+    },
     async submit() {
       if (this.form.valid === false) {
         return;
       }
       this.form.loading = true;
-      const { data } = await this.axios.post('/api/login', this.form.user);
-      localStorage.setItem('token', data.token);
-      this.$router.push('/');
-      this.form.loading = false;
+      try {
+        const { data } = await this.axios.post('/api/login', this.form.user);
+        localStorage.setItem('token', data.token);
+        this.$router.push('/');
+      } catch {
+        this.form.error = true;
+      } finally {
+        this.form.loading = false;
+      }
     },
   },
 };

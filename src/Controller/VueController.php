@@ -7,7 +7,7 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class VueController
+final class VueController
 {
     public function __construct(
         private readonly Environment $twig,

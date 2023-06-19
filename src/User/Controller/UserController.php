@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Context\Normalizer\ObjectNormalizerContextBuild
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class UserController
+final class UserController
 {
     public function __construct(
         private readonly SerializerInterface $serializer,

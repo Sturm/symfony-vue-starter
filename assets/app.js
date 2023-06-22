@@ -19,9 +19,9 @@ registerPlugins(app);
 const defaultTheme = {
   dark: false,
   colors: {
-    background: '#d3d3d3',
+    background: '#f5f5f9',
     surface: '#FFFFFF',
-    primary: '#003cee',
+    primary: '#6870ee',
     'primary-darken-1': '#3700B3',
     secondary: '#03DAC6',
     'secondary-darken-1': '#018786',

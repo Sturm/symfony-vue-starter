@@ -42,5 +42,6 @@ const vuetify = createVuetify({
     },
   },
 });
+app.use(vuetify);
 
-app.use(vuetify).mount('#app');
+app.mount('#app');

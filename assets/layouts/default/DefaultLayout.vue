@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { useUserStore } from '../../store/user';
 
 export default {
   data: () => ({
@@ -93,12 +93,14 @@ export default {
     ],
   }),
   computed: {
-    ...mapGetters({
-      user: 'getUser',
-    }),
+    user() {
+      const userStore = useUserStore();
+      return userStore.getUser;
+    },
   },
   async mounted() {
-    await this.$store.dispatch('fetchUser');
+    const userStore = useUserStore();
+    await userStore.fetchUser();
     this.overlay = false;
   },
   methods: {

@@ -9,4 +9,4 @@ vue_route:
 
 user_controller:
     resource: ../src/User/Controller/
-    type: annotation
+    type: attribute
